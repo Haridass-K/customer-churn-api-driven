@@ -1,0 +1,8 @@
+Application Detail,Name,ID,Status / Type,Additional Info
+Deployment,customer-churn-data-pipeline,726728ef-f548-49c9-a29f-08743450617e,Available,flows\data_pipeline_flow.py:customer_churn_data_pipeline
+Work Pool,customer-churn-pool,1df38b09-9d6d-4c1f-adef-4eb291e69d3c,prefect:managed,WorkPoolStatus.READY
+Flow Run,helpful-snake,06a4a6c8-471f-75b1-8000-d4996fe2e35b,StateType.SCHEDULED,None
+Flow Run,mutant-frigatebird,06a4a6c0-e69a-79f4-8000-aeb00d704044,StateType.SCHEDULED,None
+Flow Run,courageous-panda,06a4a6b8-883a-7f94-8000-ddb760cd9dfd,StateType.SCHEDULED,None
+Flow Run,affable-dragon,06a4a6b2-7a40-7548-8000-428bd66161d3,StateType.SCHEDULED,None
+Flow Run,gabby-marmoset,06a4a6ad-6a22-70cc-8000-b7541bcd74b3,StateType.SCHEDULED,None
