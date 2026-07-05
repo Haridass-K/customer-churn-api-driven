@@ -228,13 +228,3 @@ Example
 
 ---
 
-# Future Enhancements
-
-- Docker containerization
-- Kubernetes deployment
-- CI/CD integration
-- Cloud deployment
-- Model monitoring
-- Automated retraining
-
----
