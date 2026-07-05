@@ -1,0 +1,8 @@
+Item,Value
+Raw Data Path,data/raw/customer_churn.csv
+Processed Data Path,data/processed/customer_churn_processed.csv
+Rows,7043
+Columns,7073
+Duplicate Records,0
+Missing Values Before Imputation,11
+Missing Values After Imputation,0

@@ -1,0 +1,11 @@
+tenure_group,monthly_charges_group,total_charges_group
+0-12 Months,Low,Low
+25-48 Months,Medium,Low
+0-12 Months,Medium,Low
+25-48 Months,Low,Low
+0-12 Months,Medium,Low
+0-12 Months,High,Low
+13-24 Months,High,Low
+0-12 Months,Low,Low
+25-48 Months,High,Medium
+49-72 Months,Medium,Medium

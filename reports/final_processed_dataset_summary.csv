@@ -1,0 +1,6 @@
+Item,Value
+Final Processed Dataset Path,../data/processed/customer_churn_processed.csv
+Number of Rows,7043
+Number of Columns,31
+Missing Values,0
+Duplicate Records,22

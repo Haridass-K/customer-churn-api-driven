@@ -1,0 +1,4 @@
+Item,Value
+Best Model,Logistic Regression
+Selection Metric,F1 Score
+Best F1 Score,0.6085

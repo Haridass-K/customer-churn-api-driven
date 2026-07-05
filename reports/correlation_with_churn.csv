@@ -1,0 +1,14 @@
+Feature,Correlation_With_Churn
+Churn_Yes,1.0
+InternetService_Fiber optic,0.3080197449448227
+PaymentMethod_Electronic check,0.30191874901128496
+MonthlyCharges,0.1933564222378467
+PaperlessBilling_Yes,0.19182533166646884
+SeniorCitizen,0.15088932817647235
+PhoneService_Yes,0.011941980029003086
+gender_Male,-0.008612095078997828
+Partner_Yes,-0.1504475449591762
+Dependents_Yes,-0.16422140157972534
+TotalCharges,-0.19903683186929216
+Contract_Two year,-0.30225346934965014
+tenure,-0.3522286701130793
