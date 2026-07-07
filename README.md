@@ -8,20 +8,11 @@
 
 # Project Overview
 
-This project implements an end-to-end API-driven cloud native machine learning solution for predicting customer churn.
+This project presents an end-to-end API-driven cloud-native machine learning solution for predicting customer churn in the telecommunications domain.
 
-The application covers the complete machine learning lifecycle including:
+The application implements the complete machine learning lifecycle, including data preprocessing, exploratory data analysis, model development, experiment tracking, workflow orchestration, REST API development, and cloud deployment.
 
-- Business Understanding
-- Data Ingestion
-- Data Preprocessing
-- Exploratory Data Analysis (EDA)
-- Machine Learning Model Development
-- MLflow Experiment Tracking (MLOps)
-- Prefect Data Pipeline Automation (DataOps)
-- FastAPI REST API
-- Swagger & OpenAPI Documentation
-- Prefect Built-in API Access
+The project integrates DataOps, MLOps, and API-driven cloud-native technologies using Prefect Cloud, MLflow, FastAPI, and Render.
 
 ---
 
@@ -29,17 +20,17 @@ The application covers the complete machine learning lifecycle including:
 
 Customer churn is one of the major challenges faced by telecommunication companies. Losing existing customers directly impacts business revenue and increases customer acquisition costs.
 
-This project predicts whether a customer is likely to churn based on customer demographic information, service subscriptions, and billing details.
+This project predicts whether a customer is likely to churn based on customer demographics, subscribed services, contract information, and billing details, enabling organizations to take proactive customer retention measures.
 
 ---
 
 # Dataset
 
-**Source**
+**Dataset:** IBM Telco Customer Churn Dataset
 
-IBM Telco Customer Churn Dataset (Kaggle)
+**Source:** Kaggle
 
-Dataset Location
+Raw Dataset
 
 ```
 data/raw/customer_churn.csv
@@ -76,18 +67,21 @@ Best Model Selection
            │
      ┌──────────────┐
      ▼              ▼
-MLflow         Prefect Pipeline
-(MLOps)         (DataOps)
+ MLflow      Prefect Pipeline
+ (MLOps)         (DataOps)
      │              │
      └──────┬───────┘
             ▼
-FastAPI REST API
+      FastAPI REST API
             │
             ▼
-Swagger / OpenAPI
+      Render Cloud
             │
             ▼
-Prediction Response
+   Swagger / OpenAPI
+            │
+            ▼
+    Prediction Response
 ```
 
 ---
@@ -97,19 +91,21 @@ Prediction Response
 | Component | Technology |
 |-----------|------------|
 | Programming Language | Python 3.11 |
-| IDE | VS Code |
+| IDE | Visual Studio Code |
 | Machine Learning | Scikit-learn |
 | Data Processing | Pandas, NumPy |
 | Visualization | Matplotlib |
 | DataOps | Prefect Cloud |
 | MLOps | MLflow |
-| API | FastAPI |
+| REST API | FastAPI |
 | API Server | Uvicorn |
+| Cloud Deployment | Render |
+| API Documentation | Swagger UI & OpenAPI |
 | Version Control | Git & GitHub |
 
 ---
 
-# Folder Structure
+# Project Folder Structure
 
 ```
 customer-churn-api-driven
@@ -137,24 +133,24 @@ customer-churn-api-driven
 
 # Data Pipeline
 
-The automated data pipeline includes:
+The automated data pipeline performs:
 
 - Data Loading
-- Missing Value Handling
-- Duplicate Checking
+- Missing Value Analysis
+- Duplicate Detection
 - Data Type Conversion
 - Feature Encoding
 - Feature Scaling
 - Exploratory Data Analysis
 - Report Generation
 
-The pipeline is automated using **Prefect Cloud** and scheduled to execute every **2 minutes**.
+The workflow is automated using **Prefect Cloud** and scheduled to execute every **2 minutes**.
 
 ---
 
 # Machine Learning Models
 
-The following classification algorithms were evaluated:
+The following classification models were evaluated:
 
 - Logistic Regression
 - Random Forest
@@ -164,12 +160,10 @@ The following classification algorithms were evaluated:
 
 **Logistic Regression**
 
----
-
-# Final Model Performance
+### Final Performance
 
 | Metric | Value |
-|---------|--------|
+|---------|-------|
 | Accuracy | 0.8088 |
 | Precision | 0.6667 |
 | Recall | 0.5597 |
@@ -182,9 +176,10 @@ The following classification algorithms were evaluated:
 MLflow is used for:
 
 - Experiment Tracking
+- Parameter Logging
 - Metric Logging
-- Model Logging
 - Model Comparison
+- Model Artifact Management
 
 Logged Metrics
 
@@ -193,7 +188,7 @@ Logged Metrics
 - Recall
 - F1 Score
 
-Start MLflow
+Run MLflow
 
 ```bash
 mlflow ui
@@ -207,16 +202,13 @@ http://127.0.0.1:5000
 
 ---
 
-# DataOps (Prefect)
+# DataOps (Prefect Cloud)
 
-Prefect Cloud automates the complete data pipeline.
+The Prefect workflow automates:
 
-Pipeline includes:
-
-- Preprocessing
-- EDA
-- Automated Execution
-- Cloud Scheduling
+- Data Preprocessing
+- Exploratory Data Analysis
+- Scheduled Execution
 - Logging
 - Monitoring
 
@@ -242,13 +234,13 @@ prefect deployment run "Customer Churn Data Pipeline/customer-churn-data-pipelin
 
 # Built-in Prefect API
 
-The project retrieves application details using Prefect's built-in Client API.
+The application retrieves deployment information using Prefect's built-in Client API.
 
-Retrieved Details include:
+Retrieved Information includes:
 
-- Deployment
-- Work Pool
-- Flow Runs
+- Deployment Details
+- Work Pool Details
+- Flow Run Details
 - Flow Status
 
 Generated Reports
@@ -265,23 +257,43 @@ reports/prefect_api_application_details.png
 
 # FastAPI
 
-Start API
+Run the API locally
 
 ```bash
 uvicorn api.main:app --reload
 ```
 
-Swagger
+Local Swagger
 
 ```
 http://127.0.0.1:8000/docs
 ```
 
-OpenAPI
+Local OpenAPI
 
 ```
 http://127.0.0.1:8000/openapi.json
 ```
+
+---
+
+# Cloud Deployment (Render)
+
+The FastAPI application has been successfully deployed on **Render Cloud** as a Python Web Service.
+
+### Live Application
+
+https://customer-churn-api-driven.onrender.com
+
+### Swagger UI
+
+https://customer-churn-api-driven.onrender.com/docs
+
+### OpenAPI Specification
+
+https://customer-churn-api-driven.onrender.com/openapi.json
+
+The cloud deployment allows users to access the application directly through a web browser without requiring local installation.
 
 ---
 
@@ -299,9 +311,9 @@ http://127.0.0.1:8000/openapi.json
 
 ```json
 {
-    "prediction": 0,
-    "prediction_label": "No Churn",
-    "churn_probability": 0.4882
+  "prediction": 0,
+  "prediction_label": "No Churn",
+  "churn_probability": 0.4882
 }
 ```
 
@@ -326,20 +338,112 @@ http://127.0.0.1:8000/openapi.json
 
 ## Sub-Objective 3
 
-- Built-in API Access using Prefect Client API
-- Display Application Details
+- FastAPI REST API
+- Swagger & OpenAPI Documentation
+- Built-in Prefect API Access
+- Application Detail Retrieval
 
 ---
 
 # Screenshots
 
-The project includes screenshots for:
+The repository includes screenshots demonstrating:
 
-- MLflow Experiment Tracking
+- Overall Project Architecture
+- Data Preprocessing
+- Correlation Heatmap
+- Feature Importance
 - Prefect Cloud Deployment
-- Prefect Cloud Completed Pipeline
+- Prefect Completed Pipeline
+- MLflow Experiment Tracking
 - Swagger API Documentation
 - Swagger Prediction Response
 - OpenAPI Specification
+- Prefect Built-in API Details
+- Render Cloud Deployment
+- Live Prediction using Render
 
 ---
+
+# Reproducing the Project
+
+If all project files cannot be uploaded to the Taxila portal due to upload size limitations, the complete project is available in this GitHub repository.
+
+## Clone Repository
+
+```bash
+git clone https://github.com/Haridass-K/customer-churn-api-driven.git
+```
+
+Navigate to the project directory
+
+```bash
+cd customer-churn-api-driven
+```
+
+(Optional) Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+Windows
+
+```bash
+venv\Scripts\activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the FastAPI application
+
+```bash
+uvicorn api.main:app --reload
+```
+
+Run MLflow
+
+```bash
+mlflow ui
+```
+
+Run the Prefect Flow
+
+```bash
+python flows/data_pipeline_flow.py
+```
+
+or
+
+```bash
+prefect deployment run "Customer Churn Data Pipeline/customer-churn-data-pipeline"
+```
+
+---
+
+# GitHub Repository
+
+https://github.com/Haridass-K/customer-churn-api-driven
+
+---
+
+# Note
+
+At Taxila portal due to file size restrictions, the GitHub repository contains the complete implementation, including:
+
+- Source Code
+- Datasets
+- Machine Learning Models
+- Jupyter Notebooks
+- Prefect Workflows
+- FastAPI Application
+- MLflow Integration
+- Reports
+- Screenshots
+- Project Documentation
+
+The project can be reproduced by following the steps provided in the **Reproducing the Project** section above.
