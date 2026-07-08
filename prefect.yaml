@@ -1,4 +1,3 @@
----
 # Welcome to your prefect.yaml file! You can use this file for
 # storing and managing configuration for deploying your flows.
 # We recommend committing this file to source control along
@@ -9,11 +8,11 @@ name: customer-churn-api-driven
 prefect-version: 3.7.7
 
 # build section allows you to manage and build docker images
-build: null
+build:
 
 # push section allows you to manage if and how this project
 # is uploaded to remote locations
-push: null
+push:
 
 # pull section allows you to provide instructions for cloning
 # this project in remote locations
@@ -23,7 +22,7 @@ pull:
     repository: https://github.com/Haridass-K/customer-churn-api-driven.git
     branch: master
 - prefect.deployments.steps.set_working_directory:
-    directory: "{{ clone-step.directory }}"
+    directory: '{{ clone-step.directory }}'
 - prefect.deployments.steps.run_shell_script:
     script: pip install -r requirements.txt
     stream_output: true
@@ -32,18 +31,34 @@ pull:
 # for deploying flows
 deployments:
 - name: customer-churn-data-pipeline
-  version: null
+  version:
   tags: []
-  concurrency_limit: null
-  description: null
+  concurrency_limit:
+  description:
   entrypoint: flows\data_pipeline_flow.py:customer_churn_data_pipeline
   parameters: {}
   work_pool:
     name: customer-churn-pool
-    work_queue_name: null
+    work_queue_name:
     job_variables: {}
   schedules:
   - interval: 120.0
     anchor_date: '2026-07-05T12:14:35.481026+00:00'
     timezone: UTC
     active: false
+- name: customer-churn-data-pipeline
+  version:
+  tags: []
+  description:
+  schedules:
+  - interval: 120.0
+    anchor_date: '2026-07-05T12:14:35.481026+00:00'
+    timezone: UTC
+    active: false
+  concurrency_limit:
+  entrypoint: flows/data_pipeline_flow.py:customer_churn_data_pipeline
+  parameters: {}
+  work_pool:
+    name: customer-churn-pool
+    work_queue_name:
+    job_variables: {}

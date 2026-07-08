@@ -364,7 +364,6 @@ The repository includes screenshots demonstrating:
 - Live Prediction using Render
 
 ---
-
 # Reproducing the Project
 
 If all project files cannot be uploaded to the Taxila portal due to upload size limitations, the complete project is available in this GitHub repository.
@@ -381,47 +380,188 @@ Navigate to the project directory
 cd customer-churn-api-driven
 ```
 
-(Optional) Create a virtual environment
+---
+
+## Activate Environment
+
+This project was developed using a Conda environment.
 
 ```bash
-python -m venv venv
+conda activate customer-churn
 ```
 
-Windows
-
-```bash
-venv\Scripts\activate
-```
-
-Install dependencies
+If the environment is not available, install the dependencies using:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the FastAPI application
+---
+
+# Running the Project
+
+## 1. Start FastAPI
 
 ```bash
 uvicorn api.main:app --reload
 ```
 
-Run MLflow
+Open Swagger UI
+
+```
+http://127.0.0.1:8000/docs
+```
+
+Open OpenAPI Specification
+
+```
+http://127.0.0.1:8000/openapi.json
+```
+
+---
+
+## 2. Start MLflow
 
 ```bash
 mlflow ui
 ```
 
-Run the Prefect Flow
+Open
+
+```
+http://127.0.0.1:5000
+```
+
+MLflow provides:
+
+- Experiment Tracking
+- Model Comparison
+- Metric Logging
+- Model Artifact Management
+
+---
+
+## 3. Start Prefect Server
+
+```bash
+prefect server start
+```
+
+Open Prefect Dashboard
+
+```
+http://127.0.0.1:4200
+```
+
+For first-time local setup configure the API endpoint:
+
+```bash
+prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
+```
+
+---
+
+## 4. Start Prefect Worker
+
+```bash
+prefect worker start --pool customer-churn-pool
+```
+
+The worker listens for scheduled deployments and executes workflow runs.
+
+---
+
+## 5. Execute Prefect Deployment
+
+Run the deployed DataOps workflow
+
+```bash
+prefect deployment run "Customer Churn Data Pipeline/customer-churn-data-pipeline"
+```
+
+The workflow automatically performs:
+
+- Data Loading
+- Data Preprocessing
+- Exploratory Data Analysis
+- Workflow Logging
+- Monitoring
+- Scheduled Execution
+
+The workflow can also be executed directly:
 
 ```bash
 python flows/data_pipeline_flow.py
 ```
 
-or
+---
+
+## 6. Built-in Prefect API
+
+Run
 
 ```bash
-prefect deployment run "Customer Churn Data Pipeline/customer-churn-data-pipeline"
+python src/prefect_api_details.py
 ```
+
+This retrieves:
+
+- Deployment Details
+- Work Pool Details
+- Flow Run Details
+- Flow Status
+
+Generated reports
+
+```
+reports/prefect_api_application_details.csv
+```
+
+```
+reports/prefect_api_application_details.png
+```
+
+---
+
+# Cloud Deployment
+
+The FastAPI application has been successfully deployed on **Render Cloud**.
+
+Live Application
+
+https://customer-churn-api-driven.onrender.com
+
+Swagger UI
+
+https://customer-churn-api-driven.onrender.com/docs
+
+OpenAPI
+
+https://customer-churn-api-driven.onrender.com/openapi.json
+
+The deployed cloud application provides the same prediction API demonstrated locally and can be accessed directly through a web browser without requiring local installation.
+
+---
+
+# Screenshots
+
+The repository includes screenshots demonstrating:
+
+- Overall Project Architecture
+- Data Preprocessing
+- Correlation Heatmap
+- Feature Importance
+- Prefect Deployment Dashboard
+- Prefect Work Pool
+- Prefect Completed Flow Run
+- Prefect Task Execution
+- MLflow Experiment Tracking
+- Swagger API Documentation
+- Swagger Prediction Response
+- OpenAPI Specification
+- Prefect Built-in API Details
+- Render Cloud Deployment
+- Live Prediction using Render
 
 ---
 
@@ -433,17 +573,20 @@ https://github.com/Haridass-K/customer-churn-api-driven
 
 # Note
 
-At Taxila portal due to file size restrictions, the GitHub repository contains the complete implementation, including:
+Due to file size limitations on the Taxila portal, the complete implementation is maintained in this GitHub repository.
+
+The repository contains:
 
 - Source Code
 - Datasets
 - Machine Learning Models
 - Jupyter Notebooks
 - Prefect Workflows
-- FastAPI Application
 - MLflow Integration
+- FastAPI Application
+- Render Cloud Deployment
 - Reports
 - Screenshots
 - Project Documentation
 
-The project can be reproduced by following the steps provided in the **Reproducing the Project** section above.
+The project can be fully reproduced by following the steps provided in the **Reproducing the Project** section above.
